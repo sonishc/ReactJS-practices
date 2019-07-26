@@ -1,48 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  function formatName(user) {
-    return user.firstName + ' ' + user.lastName;
+const list = [
+  {
+    title: 'React',
+    url: 'https://reactjs.org/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        {
+          list.map(function (item) {
+            return (
+              <div key={item.objectID}>
+                <span><a href={item.url} alt={item.title} >{item.title}</a> </span>
+                <span>{item.author} </span>
+                <span>{item.num_comments} </span>
+                <span>{item.points} </span>
+              </div>
+            );
+          })
+        }
+      </div>
+    )
   }
-
-  const O1 = {
-    type: 'p',
-    props: {
-      key: 1,
-      children: 'Yep'
-    }
-  }
-  let welcome1 = React.createElement(O1.type, O1.props)
-
-  const O2 = {
-    type: 'button',
-    props: {
-      key: 2,
-      children: 'Yep'
-    },
-  }
-  let welcome2 = React.createElement(O2.type, O2.props)
-
-  const O3 = {
-    type: 'div',
-    props: {
-      children: [welcome1, welcome2]
-    },
-  }
-  let allInOne = React.createElement(O3.type, O3.props)
-
-  const user = {
-    firstName: "Serhii",
-    lastName: "Onishchuk"
-  };
-
-  return (
-    <div className="App">
-      {formatName(user)}
-      { allInOne }
-    </div>
-  );
 }
 
 export default App;
